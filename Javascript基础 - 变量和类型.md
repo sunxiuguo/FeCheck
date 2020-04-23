@@ -86,6 +86,28 @@ Object.prototype.toString.call(new Date) === '[object Date]'
 5. Array.isArray
 ```
 
+### 值类型和引用类型在存储上有什么区别？
+
+值类型 key 和 value 是存储在栈内存中的
+
+```javascript
+var name = "jozo";
+var city = "guangzhou";
+var age = 22;
+```
+
+![](https://images2015.cnblogs.com/blog/1103385/201702/1103385-20170212104752057-1066946645.png)
+
+引用类型在堆内存中存储 value，在栈内存中存储 key 和指向堆内存的地址
+
+```javascript
+var person1 = { name: "jozo" };
+var person2 = { name: "xiaom" };
+var person3 = { name: "xiaoq" };
+```
+
+![](https://images2015.cnblogs.com/blog/1103385/201702/1103385-20170212104829307-1264699054.png)
+
 - [ ] 分别都是存储在哪？？有什么区别？
 
 - [ ] JavaScript 对象的底层数据结构是什么
