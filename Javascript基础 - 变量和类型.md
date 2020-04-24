@@ -117,7 +117,7 @@ var city = "guangzhou";
 var age = 22;
 ```
 
-![](https://images2015.cnblogs.com/blog/1103385/201702/1103385-20170212104752057-1066946645.png)
+![](https://github.com/sunxiuguo/FeCheck/blob/master/assets/stack.png)
 
 值类型的赋值如下
 
@@ -130,7 +130,7 @@ console.log(a); // 11
 console.log(b); // 10
 ```
 
-![](https://images2015.cnblogs.com/blog/1103385/201702/1103385-20170212104829307-1264699054.png)
+![](https://github.com/sunxiuguo/FeCheck/blob/master/assets/normal-set-value.png)
 
 #### 引用类型
 
@@ -143,7 +143,7 @@ var person2 = { name: "xiaom" };
 var person3 = { name: "xiaoq" };
 ```
 
-![](https://images2015.cnblogs.com/blog/1103385/201702/1103385-20170212104829307-1264699054.png)
+![](https://github.com/sunxiuguo/FeCheck/blob/master/assets/heap.png)
 
 引用类型的赋值如下
 
@@ -162,7 +162,7 @@ console.log(a.age); // 22
 console.log(a == b); // true
 ```
 
-![](https://images2015.cnblogs.com/blog/1103385/201702/1103385-20170212104829307-1264699054.png)
+![](https://github.com/sunxiuguo/FeCheck/blob/master/assets/object-set-value.png)
 
 - [ ] JavaScript 中的堆内存和栈内存
 
