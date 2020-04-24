@@ -174,7 +174,8 @@ https://juejin.im/post/5d116a9df265da1bb47d717b
 
 - [ ] 基本类型对应的内置对象，以及他们之间的装箱拆箱操作
 
-- [ ] 理解值类型和引用类型
+- [ ] 栈内存和堆内存的垃圾回收
+      https://juejin.im/post/5d0706a6f265da1bc23f77a9
 
 - [ ] null 和 undefined 的区别
 
