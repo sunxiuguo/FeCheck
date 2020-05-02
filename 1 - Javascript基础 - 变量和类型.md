@@ -1,12 +1,12 @@
 # Javascript 基础 - 变量和类型
 
-### JavaScript 规定了几种语言类型
+## 一、JavaScript 规定了几种语言类型
 
 按存储类型分类：
 基础类型 -> number, string, boolean, undefined, null, symbol
 引用类型 -> object（Object, Array, Date, Function, RegExp）
 
-### 常用的判断数据类型的方式
+## 二、常用的判断数据类型的方式
 
 1. typeof
 
@@ -105,9 +105,9 @@ Object.prototype.toString.call(new Date()) === "[object Date]";
 
 5. Array.isArray
 
-### JavaScript 中的值类型和引用类型
+## 三、JavaScript 中的值类型和引用类型
 
-#### 值类型
+### 值类型
 
 值类型 key 和 value 是存储在栈内存中的
 
@@ -132,7 +132,7 @@ console.log(b); // 10
 
 ![](https://github.com/sunxiuguo/FeCheck/blob/master/assets/normal-set-value.png)
 
-#### 引用类型
+### 引用类型
 
 引用类型在堆内存中存储 value，在栈内存中存储 key 和指向堆内存的地址
 类型比较时都是根据在栈内存储的值的，也就是说引用类型的比较，是根据两个对象在堆内存中的地址比较的。
