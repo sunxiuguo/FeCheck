@@ -79,7 +79,7 @@ Player.start = function () {
 };
 ```
 
-2. 构造函数
+2. 构造函数/实例
 
 通过 this 添加的属性和方法总是指向当前对象的，所以在实例化的时候，通过 this 添加的属性和方法都会在内存中复制一份，这样就会造成内存的浪费。
 
@@ -117,3 +117,24 @@ const blackPlayer = new Player("black");
 Tips. 怎么看函数是不是在内存中创建了多次呢？
 
 比如 2. 构造函数中，我们可以看到 whitePlayer.start === blackPlayer.start // 输出 false
+
+4. 静态属性
+
+是绑定在构造函数上的属性方法，需要通过构造函数访问
+
+比如我们想看一下一共创建了多少个玩家的实例
+
+```javascript
+function Player(color) {
+  this.color = color;
+  if (!Player.total) {
+    Player.total = 0;
+  }
+  Player.total++;
+}
+
+let p1 = new Player("white");
+console.log(Player.total); // 1
+let p2 = new Player("black");
+console.log(Player.total); // 2
+```
