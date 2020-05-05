@@ -79,6 +79,19 @@ Player.start = function () {
 };
 ```
 
+或者工厂模式，这两种方式都无法识别对象类型，比如 Player 的类型只是 Object
+
+```javascript
+function createObject() {
+  const Player = new Object();
+  Player.color = "white";
+  Player.start = function () {
+    console.log("white下棋");
+  };
+  return Player;
+}
+```
+
 2. 构造函数/实例
 
 通过 this 添加的属性和方法总是指向当前对象的，所以在实例化的时候，通过 this 添加的属性和方法都会在内存中复制一份，这样就会造成内存的浪费。
