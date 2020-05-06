@@ -21,6 +21,10 @@ function Child() {}
 
 // Parent的实例同时包含实例属性方法和原型属性方法，所以把new Parent()赋值给Child.prototype。
 // 如果仅仅Child.prototype = Parent.prototype，那么Child只能调用getName，无法调用.name
+// 当Child.prototype = new Parent()后， 如果new Child()得到一个实例对象child，那么
+// child.__proto__ === Child.prototype;
+// Child.prototype.__proto__ === Parent.prototype
+// 也就意味着在访问child对象的属性时，如果在child上找不到，就会去Child.prototype去找，如果还找不到，就会去Parent.prototype中去找，从而实现了继承。
 Child.prototype = new Parent();
 // 因为constructor属性是包含在prototype里的，上面重新赋值了prototype，所以会导致Child的constructor指向[Function: Parent]，有的时候使用child1.constructor判断类型的时候就会出问题
 // 为了保证类型正确，我们需要将Child.prototype.constructor 指向他原本的构造函数Child
