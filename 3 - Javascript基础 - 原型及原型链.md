@@ -1,6 +1,4 @@
-https://www.yuque.com/fe9/basic/zk5e4f
-
-https://github.com/mqyqingfeng/Blog/issues/2
+# 原型及原型链
 
 ## 在原型上添加属性或者方法有什么好处？
 

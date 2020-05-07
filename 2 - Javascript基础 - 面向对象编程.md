@@ -1,6 +1,4 @@
-https://juejin.im/post/5b8a8724f265da435450c591
-
-https://juejin.im/post/59396c96fe88c2006afc2707#heading-0
+# 面向对象编程
 
 ## 什么是面向对象编程？
 
@@ -13,9 +11,9 @@ https://juejin.im/post/59396c96fe88c2006afc2707#heading-0
 而面向对象关注的重点是主谓，是把构成问题的事物拆解为各个对象，而拆解出对象的目的也不是为了实现某个步骤，而是为了描述这个事物在当前问题中的各种行为。
 
 面向对象的特点是什么？是
-封装：让使用对象的人不考虑内部实现，只考虑功能使用 把内部的代码保护起来，只留出一些个 api 接口供用户使用
+封装：让使用对象的人不考虑内部实现，只考虑功能使用 把内部的代码保护起来，只留出一些 api 接口供用户使用
 继承：就是为了代码的复用，从父类上继承出一些方法和属性，子类也有自己的一些属性
-多态：实际上是不同对象作用与同一操作产生不同的效果。多态的思想实际上是把“想做什么”和“谁去做“分开
+多态：是不同对象作用于同一操作产生不同的效果。多态的思想实际上是把“想做什么”和“谁去做“分开
 
 比如下棋的过程,
 
@@ -110,9 +108,13 @@ const whitePlayer = new Player("white");
 const blackPlayer = new Player("black");
 ```
 
+Tips. 怎么看函数是不是在内存中创建了多次呢？
+
+比如 2. 构造函数中，我们可以看到 whitePlayer.start === blackPlayer.start // 输出 false
+
 3. 原型
 
-通过原型继承的方法并不是自身的，我们要在原型链上一层一层的查找，这样创建的好处是只在内存中创建一次，实例化的对象都会指向这个 prototype 对象，但是这样做也有弊端，因为实例化的对象的原型都是指向同一内存地址，改动其中的一个对象的属性可能会影响到其他的对象
+通过原型继承的方法并不是自身的，我们要在原型链上一层一层的查找，这样创建的好处是只在内存中创建一次，实例化的对象都会指向这个 prototype 对象。
 
 ```javascript
 function Player(color) {
@@ -126,10 +128,6 @@ Player.prototype.start = function () {
 const whitePlayer = new Player("white");
 const blackPlayer = new Player("black");
 ```
-
-Tips. 怎么看函数是不是在内存中创建了多次呢？
-
-比如 2. 构造函数中，我们可以看到 whitePlayer.start === blackPlayer.start // 输出 false
 
 4. 静态属性
 

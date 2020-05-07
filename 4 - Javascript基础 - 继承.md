@@ -1,8 +1,4 @@
-- [ ] 原型继承
-- [ ] 构造函数继承
-- [ ] 组合继承
-
-https://github.com/mqyqingfeng/Blog/issues/16
+# 继承
 
 ## 原型链继承
 
