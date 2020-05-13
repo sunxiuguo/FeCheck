@@ -164,13 +164,85 @@ console.log(a == b); // true
 
 ![](https://github.com/sunxiuguo/FeCheck/blob/master/assets/object-set-value.png)
 
-- [ ] JavaScript 中的堆内存和栈内存
+### JavaScript 中的堆内存和栈内存
 
-https://juejin.im/post/5d116a9df265da1bb47d717b
+    https://juejin.im/post/5d116a9df265da1bb47d717b
 
-- [ ] JavaScript 对象的底层数据结构是什么
+- [ ] JavaScript 对象的底层数据结构是什么 TODO
 
-- [ ] Symbol 类型在实际开发中的应用、可手动实现一个简单的 Symbol
+      https://juejin.im/entry/58eb2b94ac502e006c452632#comment
+
+### Symbol 类型在实际开发中的应用、可手动实现一个简单的 Symbol
+
+1. 作为对象键名, 模拟私有属性
+
+symbol 的 key 是不能通过 for...in 和 Object.keys()来枚举的，它未被包含在对象自身的属性名集合(property names)之中。所以，利用该特性，我们可以把一些不需要对外操作和访问的属性使用 Symbol 来定义。
+
+```js
+const key = Symbol();
+
+let obj = {
+  [key]: "test_symbol",
+  age: 18,
+  name: "sxg",
+};
+
+console.log(obj); // { age: 18, name: 'sxg', [Symbol()]: 'test_symbol' }
+
+Object.getOwnPropertyNames(obj); // ['age', 'name']
+
+for (let key in obj) {
+  console.log(key);
+}
+// age
+// name
+
+JSON.stringify(obj); // {age:18,name: 'sxg'}
+
+// 使用Object的API是可以访问到的
+Object.getOwnPropertySymbols(obj); // [Symbol(name)]
+```
+
+2. 使用 Symbol 来代替常量
+
+   有时我们会定义一个常量，给它赋予一个唯一值。
+
+   比如 const TYPE_SXG = 'SXG_TYPE_TEST';
+
+   常量少的话还好，如果有太多需要声明，那么命名上可能会非常头疼
+
+   使用 Symbol 我们可以直接
+
+   const TYPE_SXG = Symbol();
+   const AGE_SXG = Symbol();
+
+3. 同样的，也可以用来定义类的私有属性/方法
+
+```js
+const PASSWORD = Symbol();
+
+class Login {
+  constructor(username, password) {
+    this.username = username;
+    this[PASSWORD] = password;
+  }
+
+  checkPassword(pwd) {
+    return this[PASSWORD] === pwd;
+  }
+}
+```
+
+4. 全局创建/获取 Symbol, 用于在多个 window 之间使用
+
+```js
+const sb1 = Symbol.for("1111");
+const sb2 = Symbol.for("1111");
+```
+
+- [ ] 模拟实现 Symbol
+
+      https://juejin.im/post/5b1f4c21f265da6e0f70bb19
 
 - [ ] 基本类型对应的内置对象，以及他们之间的装箱拆箱操作
 
