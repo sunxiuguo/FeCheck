@@ -242,12 +242,15 @@ const sb2 = Symbol.for("1111");
 
 - [ ] 模拟实现 Symbol
 
-      https://juejin.im/post/5b1f4c21f265da6e0f70bb19
+  https://juejin.im/post/5b1f4c21f265da6e0f70bb19
 
 - [ ] 基本类型对应的内置对象，以及他们之间的装箱拆箱操作
 
+  https://juejin.im/post/5c5011805188252552518470
+
 - [ ] 栈内存和堆内存的垃圾回收
-      https://juejin.im/post/5d0706a6f265da1bc23f77a9
+
+  https://juejin.im/post/5d0706a6f265da1bc23f77a9
 
 - [ ] null 和 undefined 的区别
 
