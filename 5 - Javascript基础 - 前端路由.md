@@ -134,3 +134,143 @@ Router.route("/gray", function () {
   changeBgColor("gray");
 });
 ```
+
+## History 原理及实现
+
+hash 虽然能解决问题，但是带有#很不美观。
+
+历史的车轮无情撵过 hash，到了 html5 时代，推出了 history api。
+
+```js
+window.history.back(); // 后退
+window.history.forward(); // 前进
+window.history.go(-3); // 后退三个页面
+window.history.pushState(null, null, path);
+window.history.replaceState(null, null, path);
+```
+
+其中最主要的两个 api 是`pushState`和`replaceState`;
+
+这两个 api 都可以在不刷新页面的情况下，操作浏览器历史记录。
+
+不同的是，pushState 会增加历史记录，replaceState 会直接替换当前历史记录。
+
+History Api 有以下几种特性：
+
+1. history.pushState() 或 history.replaceState() 不会触发 popstate 事件，这时我们需要手动触发页面渲染；
+2. 可以使用 popstate 事件来监听 url 的变化
+3. 只有用户点击浏览器倒退按钮和前进按钮，或者使用 JavaScript 调用 back、forward、go 方法时才会触发 popstate。
+
+他们的参数是一样的，三个参数分别是：
+
+1. state:一个与指定网址相关的状态对象，popstate 事件触发时，该对象会传入回调函数。如果不需要这个对象，此处可以填 null。
+2. title：新页面的标题，但是所有浏览器目前都忽略这个值，因此这里可以填 null。
+3. url：新的网址，必须与当前页面处在同一个域。浏览器的地址栏将显示这个网址。
+
+### 手动实现一个基于 History 的路由
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="container">
+      <a href="/gray">灰色</a>
+      <a href="/green">绿色</a>
+      <a href="/">白色</a>
+      <button onclick="window.history.go(-1)">返回</button>
+    </div>
+  </body>
+  <script type="text/javascript" src="index.js"></script>
+  <style>
+    .container {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      font-size: 18px;
+      font-weight: bold;
+
+      background: black;
+      color: white;
+    }
+
+    a:link,
+    a:hover,
+    a:active,
+    a:visited {
+      text-decoration: none;
+      color: white;
+    }
+  </style>
+</html>
+```
+
+```js
+class BaseRouter {
+  constructor() {
+    this.routes = {};
+    this._bindPopState();
+    this.init(location.pathname);
+  }
+  init(path) {
+    history.replaceState(
+      {
+        path: path,
+      },
+      null,
+      path
+    );
+    this.routes[path] && this.routes[path]();
+  }
+
+  route(path, callback) {
+    this.routes[path] = callback || function () {};
+  }
+
+  go(path) {
+    history.pushState(
+      {
+        path: path,
+      },
+      null,
+      path
+    );
+    this.routes[path] && this.routes[path]();
+  }
+  _bindPopState() {
+    window.addEventListener("popstate", (e) => {
+      const path = e.state && e.state.path;
+      console.log(path);
+      this.routes[path] && this.routes[path]();
+    });
+  }
+}
+
+const Router = new BaseRouter();
+
+const body = document.querySelector("body");
+const container = document.querySelector(".container");
+
+function changeBgColor(color) {
+  body.style.backgroundColor = color;
+}
+
+Router.route("/", function () {
+  changeBgColor("white");
+});
+Router.route("/gray", function () {
+  changeBgColor("gray");
+});
+Router.route("/green", function () {
+  changeBgColor("green");
+});
+
+container.addEventListener("click", (e) => {
+  if (e.target.tagName === "A") {
+    e.preventDefault();
+    Router.go(e.target.getAttribute("href"));
+  }
+});
+```
